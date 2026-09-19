@@ -1,15 +1,1037 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PAGE TITLE — Roman</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Experience & Skills — Roman Brunetti</title>
+
+  <style>
+    :root {
+      --bg: #f4f2ec;
+      --text: #171717;
+      --muted: #6b6b6b;
+      --line: #d0ccc3;
+      --card: #eae7df;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-shell {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    /* ---------------------------
+       MAIN HEADER
+    --------------------------- */
+
+    header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .main-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .main-nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .main-nav-links a:hover,
+    .main-nav-links a[aria-current="page"] {
+      color: var(--text);
+    }
+
+    /* ---------------------------
+       PAGE HEADER
+    --------------------------- */
+
+    .page-header {
+      padding: 62px 0 48px;
+    }
+
+    .page-header-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 500;
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--text);
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        color 150ms ease,
+        background 150ms ease;
+    }
+
+    .resume-button:hover {
+      background: transparent;
+      color: var(--text);
+    }
+
+    /* ---------------------------
+       STICKY SECTION NAV
+    --------------------------- */
+
+    .section-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 242, 236, 0.96);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-nav {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .section-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .section-nav a {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+
+    .section-nav a:hover {
+      color: var(--text);
+    }
+
+    /* ---------------------------
+       GENERAL SECTIONS
+    --------------------------- */
+
+    section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------
+       PROJECTS
+    --------------------------- */
+
+    .projects-section {
+      padding: 84px 0 110px;
+    }
+
+    .projects-header {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 65px;
+      margin-bottom: 75px;
+    }
+
+    .projects-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 105px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+      gap: 75px;
+      align-items: start;
+    }
+
+    /* Makes every other project physically stagger */
+    .project:nth-child(even) {
+      grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1fr);
+    }
+
+    .project:nth-child(even) .project-main {
+      order: 2;
+    }
+
+    .project:nth-child(even) .project-side {
+      order: 1;
+      padding-top: 80px;
+    }
+
+    .project:nth-child(odd) .project-side {
+      padding-top: 105px;
+    }
+
+    .project-number {
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    .project h3 {
+      margin: 0;
+      max-width: 700px;
+      font-size: clamp(2.2rem, 5vw, 4.3rem);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+    }
+
+    .project-role {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /*
+      This is deliberately a roomy paragraph.
+      Expand this with your own explanation of the project.
+    */
+    .project-summary {
+      max-width: 680px;
+      margin: 32px 0 0;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .project-side {
+      border-top: 1px solid var(--line);
+    }
+
+    .project-side h4 {
+      margin: 20px 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-details {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .project-details li {
+      padding: 13px 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .project-details li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    /* ---------------------------
+       SKILLS
+    --------------------------- */
+
+    .skills-section {
+      padding: 82px 0;
+    }
+
+    .standard-layout {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 65px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .skill-group {
+      padding: 28px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 22px;
+      font-size: 1.08rem;
+      font-weight: 500;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skill-list li {
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      font-size: 0.84rem;
+    }
+
+    /* ---------------------------
+       EDUCATION
+    --------------------------- */
+
+    .education-section {
+      padding: 82px 0;
+    }
+
+    .education-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      margin-bottom: 36px;
+    }
+
+    .education-top h3 {
+      margin: 0 0 7px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .education-top p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .coursework {
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .coursework h4 {
+      margin: 0 0 17px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .course {
+      padding: 7px 10px;
+      background: var(--card);
+      font-size: 0.87rem;
+    }
+
+    /* ---------------------------
+       OTHER EXPERIENCE
+       intentionally less prominent
+    --------------------------- */
+
+    .other-experience-section {
+      padding: 60px 0;
+    }
+
+    .other-experience {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 65px;
+    }
+
+    .job-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .job-row h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .job-meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .job-note {
+      max-width: 640px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------------------------
+       FOOTER
+    --------------------------- */
+
+    footer {
+      padding: 38px 0 50px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .footer-inner p {
+      margin: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* ---------------------------
+       RESPONSIVE
+    --------------------------- */
+
+    @media (max-width: 850px) {
+      .site-shell {
+        width: min(calc(100% - 32px), var(--max-width));
+      }
+
+      .page-header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .projects-header,
+      .standard-layout,
+      .other-experience {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .project,
+      .project:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .project:nth-child(even) .project-main,
+      .project:nth-child(even) .project-side {
+        order: initial;
+      }
+
+      .project:nth-child(even) .project-side,
+      .project:nth-child(odd) .project-side {
+        padding-top: 0;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .main-nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 22px 0;
+      }
+
+      .main-nav-links {
+        gap: 14px 20px;
+      }
+
+      .page-header {
+        padding: 48px 0 38px;
+      }
+
+      .projects-section {
+        padding: 60px 0 75px;
+      }
+
+      .projects-list {
+        gap: 75px;
+      }
+
+      .education-top,
+      .job-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
+  <header>
+    <div class="site-shell main-nav">
+      <a class="brand" href="index.html">Roman Brunetti</a>
+
+      <nav class="main-nav-links" aria-label="Primary navigation">
+        <a href="about.html">About Me</a>
+        <a href="experience.html" aria-current="page">Experience &amp; Skills</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <p><a href="./">← Roman</a></p>
-    <h1>PAGE TITLE</h1>
-    <p>This page is under construction.</p>
+
+    <div class="site-shell page-header">
+      <div class="page-header-inner">
+
+        <h1>
+          Experience<br>
+          &amp; Skills
+        </h1>
+
+        <a
+          class="resume-button"
+          href="Roman_Brunetti_Resume.pdf"
+          download
+        >
+          Download Résumé
+        </a>
+
+      </div>
+    </div>
+
+    <div class="section-nav-wrap">
+      <nav class="site-shell section-nav" aria-label="Page sections">
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#other-experience">Other Experience</a>
+      </nav>
+    </div>
+
+
+
+    <!-- ========================================
+         EDUCATION
+    ========================================= -->
+
+    <section id="education" class="education-section">
+
+      <div class="site-shell standard-layout">
+
+        <h2 class="section-heading">
+          Education
+        </h2>
+
+
+        <div>
+
+          <div class="education-top">
+
+            <div>
+              <h3>B.S. Electrical Engineering</h3>
+              <p>North Carolina State University</p>
+            </div>
+
+            <div class="date">
+              Expected Dec. 2027
+            </div>
+
+          </div>
+
+
+          <div class="coursework">
+
+            <h4>
+              Relevant Coursework
+            </h4>
+
+            <div class="course-list">
+
+              <span class="course">Control Systems</span>
+
+              <span class="course">Linear Systems</span>
+
+              <span class="course">
+                Electromechanical Energy Conversion
+              </span>
+
+              <span class="course">
+                Engineering Dynamics
+              </span>
+
+              <span class="course">
+                Microelectronics
+              </span>
+
+              <span class="course">
+                Computer Systems Programming
+              </span>
+
+              <span class="course">
+                Fundamentals of Logic Design
+              </span>
+
+              <span class="course">
+                Calculus III
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
+         PROJECTS
+    ========================================= -->
+
+    <section id="projects" class="projects-section">
+      <div class="site-shell">
+
+        <div class="projects-header">
+          <h2 class="section-heading">Projects</h2>
+
+          <p class="projects-title">
+            Engineering work
+          </p>
+        </div>
+
+
+        <div class="projects-list">
+
+          <!-- PROJECT 1 -->
+
+          <article class="project">
+
+            <div class="project-main">
+
+              <div class="project-number">01</div>
+
+              <h3>
+                Helping Hand
+              </h3>
+
+              <p class="project-role">
+                Robotic Prosthetic Hand · Electrical Hardware Lead
+              </p>
+
+              <!--
+                Replace or expand this paragraph with your own description.
+                There is intentionally more room here than in the old design.
+              -->
+
+              <p class="project-summary">
+                Helping Hand is a university-funded multidisciplinary project
+                developing a robotic prosthetic hand. My work focuses on the
+                electrical hardware, including the power requirements of the
+                servo system and the circuitry supporting the control
+                electronics.
+              </p>
+
+            </div>
+
+
+            <div class="project-side">
+
+              <h4>Technical Work</h4>
+
+              <ul class="project-details">
+
+                <li>
+                  Designing power electronics to support servo-stall current
+                  transients while maintaining logic signal integrity.
+                </li>
+
+                <li>
+                  Using OrCAD X PSpice simulation to target voltage averages
+                  and ripple.
+                </li>
+
+                <li>
+                  Reading datasheets and selecting electrical and mechanical
+                  components to meet design tolerances.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+
+          <article class="project">
+
+            <div class="project-main">
+
+              <div class="project-number">02</div>
+
+              <h3>
+                FPGA Reciprocal Cipher
+              </h3>
+
+              <p class="project-role">
+                Digital Logic · Verilog · FPGA
+              </p>
+
+              <p class="project-summary">
+                This project was an FPGA circuit that accepts a 4-bit input
+                and a 4-bit key and produces a 4-bit cipher output. The design
+                used several layers of reciprocal cipher logic that could be
+                toggled and tested through the completed circuit.
+              </p>
+
+            </div>
+
+
+            <div class="project-side">
+
+              <h4>Technical Work</h4>
+
+              <ul class="project-details">
+
+                <li>
+                  Built an FPGA circuit using a 4-bit input, 4-bit key,
+                  and 4-bit cipher output.
+                </li>
+
+                <li>
+                  Designed and implemented two-way analog-to-digital
+                  converter logic.
+                </li>
+
+                <li>
+                  Implemented several layers of toggleable reciprocal
+                  ciphers using Verilog and Apio.
+                </li>
+
+                <li>
+                  Used lab equipment to analyze and debug the circuit.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 3 -->
+
+          <article class="project">
+
+            <div class="project-main">
+
+              <div class="project-number">03</div>
+
+              <h3>
+                Precision Catapult
+              </h3>
+
+              <p class="project-role">
+                Mechanical Design · Fabrication
+              </p>
+
+              <p class="project-summary">
+                The Precision Catapult was a mechanical launch system designed
+                around repeatable and calculable trajectories. The design
+                required an adjustable launch geometry as well as a practical
+                way to guide the system without relying on specialized
+                manufacturing.
+              </p>
+
+            </div>
+
+
+            <div class="project-side">
+
+              <h4>Technical Work</h4>
+
+              <ul class="project-details">
+
+                <li>
+                  Designed and fabricated a mechanical launch system with
+                  repeatable and calculable trajectories.
+                </li>
+
+                <li>
+                  Designed adjustable launch geometry from 0° to 90°.
+                </li>
+
+                <li>
+                  Designed for full coverage within the system's maximum
+                  range.
+                </li>
+
+                <li>
+                  Devised a two-axis guide system to replicate radial
+                  guidance without specialized manufacturing.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================
+         SKILLS
+    ========================================= -->
+
+    <section id="skills" class="skills-section">
+
+      <div class="site-shell standard-layout">
+
+        <h2 class="section-heading">
+          Skills
+        </h2>
+
+
+        <div class="skills-grid">
+
+          <article class="skill-group">
+
+            <h3>Programming</h3>
+
+            <ul class="skill-list">
+              <li>C</li>
+              <li>Verilog</li>
+              <li>MATLAB</li>
+              <li>LC-3 Assembly</li>
+              <li>Git</li>
+              <li>GitHub</li>
+            </ul>
+
+          </article>
+
+
+          <article class="skill-group">
+
+            <h3>Electrical</h3>
+
+            <ul class="skill-list">
+              <li>Laplace Techniques</li>
+              <li>Impedance Matching</li>
+              <li>Transistor Analysis</li>
+              <li>RLC Circuits</li>
+              <li>Three-Phase</li>
+              <li>FPGA Logic</li>
+              <li>OrCAD X / PSpice</li>
+              <li>Basic PCB Layout</li>
+              <li>Altium</li>
+              <li>Breadboarding</li>
+              <li>Through-Hole Soldering</li>
+              <li>Multimeter</li>
+              <li>Oscilloscope</li>
+            </ul>
+
+          </article>
+
+
+          <article class="skill-group">
+
+            <h3>Mechanical</h3>
+
+            <ul class="skill-list">
+              <li>Dynamic System Modeling</li>
+              <li>Internal Force Analysis</li>
+              <li>SolidWorks</li>
+              <li>3D Printing</li>
+              <li>Hand Tools</li>
+              <li>Power Tools</li>
+            </ul>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
+         OTHER EXPERIENCE
+         Purposefully quieter than the projects.
+    ========================================= -->
+
+    <section
+      id="other-experience"
+      class="other-experience-section"
+    >
+
+      <div class="site-shell other-experience">
+
+        <h2 class="section-heading">
+          Other Experience
+        </h2>
+
+
+        <div class="job-row">
+
+          <div>
+
+            <h3>
+              Orchard Inn Restaurant
+            </h3>
+
+            <p class="job-meta">
+              Fine Dining Server &amp; Line Cook · Saluda, NC
+            </p>
+
+            <p class="job-note">
+              Worked with the same team for more than three years in
+              front- and back-of-house roles.
+            </p>
+
+          </div>
+
+          <div class="date">
+            June 2022 — Present
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
+
+
+  <footer>
+
+    <div class="site-shell footer-inner">
+
+      <p>
+        Roman Brunetti
+      </p>
+
+      <div class="footer-links">
+
+        <a href="mailto:rbrunet@ncsu.edu">
+          Email
+        </a>
+
+        <a
+          href="Roman_Brunetti_Resume.pdf"
+          download
+        >
+          Résumé
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
 </body>
 </html>
